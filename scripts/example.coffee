@@ -9,7 +9,8 @@
 #   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
 
 module.exports = (robot) ->
-
+  robot.hear /who are you/i, (res) ->
+    res.send "I'm regemo!"
   # robot.hear /badger/i, (res) ->
   #   res.send "Badgers? BADGERS? WE DON'T NEED NO STINKIN BADGERS"
   #
