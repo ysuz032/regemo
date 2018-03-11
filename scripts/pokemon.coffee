@@ -29,7 +29,7 @@ module.exports = (robot) ->
     url = if res.match[2] is "pokemon" then pokemonurl else pokemonjpurl
     emojis = {}
     # predefined: send emoji
-    sendemoji = () ->
+    sendemoji = (res) ->
       for key,val of emojis
         name = val.name
         altname = if val.altname? then val.altname else "none"
@@ -46,13 +46,15 @@ module.exports = (robot) ->
       if url is pokemonjpurl
         return getcontents(pokemonurl)
       else
-        sendemoji()
+        sendemoji(res)
+        throw new Error ("abort") # aborting chain
     .then (contents) ->
       for emoji in contents.emojis
         if emoji.src of emojis is true
           altname = emojis[emoji.src].name
           emojis[emoji.src].name = emoji.name
           emojis[emoji.src].altname = altname
-      sendemoji()
+      sendemoji(res)
     .catch (err) ->
-      robot.emit 'error', err
+      if err.message isnt "abort"
+        robot.emit 'error', err
