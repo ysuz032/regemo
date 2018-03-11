@@ -11,6 +11,8 @@
 module.exports = (robot) ->
   robot.hear /who are you/i, (res) ->
     res.send "I'm regemo!"
+  robot.hear /help/i, (res) ->
+    res.send "Sorry I can not help you."
   # robot.hear /badger/i, (res) ->
   #   res.send "Badgers? BADGERS? WE DON'T NEED NO STINKIN BADGERS"
   #
