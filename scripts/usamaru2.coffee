@@ -41,7 +41,7 @@ module.exports = (robot) ->
     for i in [0..loopend]
       j = i * SEND_WORD_NUM
       if i is loopend
-        res.send(keywords[j..])
+        res.send(keywords[j..].toString())
       else
         offsetend = j + SEND_WORD_NUM - 1
-        res.send(keywords[j..offsetend])
+        res.send(keywords[j..offsetend].toString())
