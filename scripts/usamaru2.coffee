@@ -28,12 +28,12 @@ module.exports = (robot) ->
       res.send "[error] #{err}"
 
   # regemo usamaru method
-  robot.respond /usa \s*(.+)$/i , (res) ->
+  robot.respond /usa \s*(.+)/i , (res) ->
     word = res.match[1]
     if dict[word]?
       ran = Math.floor(Math.random() *  dict[word].length);
       img = dict[word][ran]
       res.send(img)
-  robot.respond /usalist$/i , (res) ->
+  robot.respond /usalist/i , (res) ->
     keywords = (word for word,urls of dict)
     res.send(keywords)
