@@ -32,8 +32,8 @@ module.exports = (robot) ->
     if res?
       res.send "[error] #{err}"
 
-  # regemo pokemon method
-  robot.respond /\s*get from (usamaru\d{1,2})/i , (res) ->
+  # regemo usamaru method
+  robot.respond /(usamaru\d{1,2})/i , (res) ->
     inputs = res.match[1]
     url = "#{inputs}url"
     if url of urls is true

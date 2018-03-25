@@ -24,9 +24,9 @@ module.exports = (robot) ->
       res.send "[error] #{err}"
 
   # pokemon emoji
-  robot.respond /\s*(.*) from (pokemonjp|pokemon)/i , (res) ->
-    inputs = res.match[1].split(",")
-    url = if res.match[2] is "pokemon" then pokemonurl else pokemonjpurl
+  robot.respond /(pokemonjp|pokemon)\s+(.*)/i , (res) ->
+    url = if res.match[1] is "pokemon" then pokemonurl else pokemonjpurl
+    inputs = res.match[2].split(/[\s,]/)
     emojis = {}
     # predefined: send emoji
     sendemoji = (res) ->
