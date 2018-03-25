@@ -4,6 +4,7 @@
 # Notes:
 #
 fs = require('fs')
+SEND_WORD_NUM = 40
 
 readJSON = (path) ->
   json = JSON.parse(fs.readFileSync(path, 'utf8'))
@@ -36,4 +37,11 @@ module.exports = (robot) ->
       res.send(img)
   robot.respond /usalist/i , (res) ->
     keywords = (word for word,urls of dict)
-    res.send(keywords)
+    loopend = Math.ceil(keywords.length / SEND_WORD_NUM)
+    for i in [0..loopend]
+      j = i * SEND_WORD_NUM
+      if i is loopend
+        res.send(keywords[j..])
+      else
+        offsetend = j + SEND_WORD_NUM - 1
+        res.send(keywords[j..offsetend])
